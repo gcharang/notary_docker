@@ -7,3 +7,5 @@ coins
 rpc
 DB/
 post-cert-renew-*
+*.pem
+dev.smk.dog

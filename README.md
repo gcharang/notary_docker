@@ -47,6 +47,28 @@ sudo systemctl restart docker
 As we will be running multiple instances of the KMD daemon on the server, we will be using a non-standard data folder and ports for the 3P KMD daemon. This is to avoid conflicts with the native KMD daemon running on the host machine for the "main" coins.
 There are also some other minor differences with paths and ports used for 3P daemons within the docker containers, so a [modified `m_notary_3rdparty`](https://github.com/KomodoPlatform/dPoW/blob/season-seven/iguana/m_notary_3rdparty_docker) file is used to launch Iguana.
 
+
+#### Season change update notes
+
+Make sure to return any notary funds to the faucet address or smk.
+
+As the coins list may change between seasons, its best to stop the docker containers before updating the repo, otherwise you'll need to stop the old containers manually.
+
+```
+cd ~/notary_docker_3p
+docker compose stop
+git pull
+./setup
+./start
+```
+
+Once all cahins are running, you can start iguana with `./iguana_3p`, then [split your UTXOs](https://komodoplatform.com/en/docs/notary/split-utxo-for-notarization/#splitting-with-iguana) to get ready for notarisations.
+
+- Run `./purge` to remove all docker containers, images, volumes and networks. **Local chain data will be preserved.**
+    - To clear space from older builds, run `./purge` while your containers are running. It will delete all other containers.
+    - If all else fails and you want to start fresh, run `./stop` first, then `./purge` to delete everything.
+
+
 ---
 
 ### Some other commands that may come in handy later:
@@ -55,9 +77,6 @@ There are also some other minor differences with paths and ports used for 3P dae
 - Run `./start <ticker>` to launch a specific deamon within a docker container, and tail it's logs
 - Run `./stop <ticker>` to stop a specific deamon
 - Run `./logs <ticker>` to view logs of a specific deamon
-- Run `./purge` to remove all docker containers, images, volumes and networks. **Local chain data will be preserved.**
-  - To clear space from older builds, run `./purge` while your containers are running. It will delete all other containers.
-  - If all else fails and you want to start fresh, run `./stop` first, then `./purge` to delete everything.
 
 ---
 
@@ -127,6 +146,8 @@ mm2_libp2p::atomicdex_behaviour:653] INFO Local peer id: PeerId("12D3KooWNGGBfPW
 The simplest way to find this is via `docker compose logs mm2 | grep Local`
 
 DM the `PeerID` value to @smk on Discord, and it will be added to the notary seednode list for uptime and version monitoring to apply the bonus scoring for participating notaries.
+
+
 
 ---
 
