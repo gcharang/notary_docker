@@ -203,6 +203,7 @@ def create_confs():
             conf.write('addnode=148.113.1.52 # gcharang_AR\n')
             conf.write('addnode=51.161.209.100 # gcharang_SH\n')
             conf.write('addnode=148.113.8.6 # gcharang_DEV\n')
+            conf.write('addnode=51.161.172.84 # gcharang_SH2\n')
             conf.write('addnode=144.76.80.75 # Alright_DEV\n')
             conf.write('addnode=65.21.77.109 # Alright_EU\n')
             conf.write('addnode=89.19.26.211 # Marmara1\n')
@@ -218,6 +219,9 @@ def create_confs():
                 conf.write('whitelistaddress=RGcGe9dxpc4m6DqXge9wQr7sqVoyAs1Vho # s7_gcharang_SH_3p\n')
                 conf.write('whitelistaddress=RGcGyeSRf3pjE7Lf872TXPAdAjEkcoiGb7 # s7_gcharang_AR_main\n')
                 conf.write('whitelistaddress=RGcGW9C7kETbhaRr6jN8Nds2pk4FaQVr7L # s7_gcharang_AR_3p\n')
+                conf.write('whitelistaddress=RGcG93msVvnGf6BJGHqKj32sTjpEgUszey # s8_gcharang_SH2_main\n')
+                conf.write('whitelistaddress=RGcGuHGP6rUWcpLm8fbziPQzaexKx1ZozG # s8_gcharang_SH2_3p\n')
+                conf.write('whitelistaddress=RSzqu1ZmAbbM2WUNdqNtPLTcLB54kwLp6D # Notary Faucet\n')
                 conf.write('whitelistaddress=RSzqu1ZmAbbM2WUNdqNtPLTcLB54kwLp6D # Notary Faucet\n')                
                 # Adds user 3p addresses for this node to whitelist
                 address = get_pubkey_address("KMD", get_user_pubkey())
